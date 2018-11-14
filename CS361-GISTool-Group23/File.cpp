@@ -35,10 +35,6 @@ void writeFile(ofstream &outputFile, vector<int> sorted) {
 	}
 }
 
-// appends .txt to the file name if the proper file type extension is not used
-// was skipping first getString, the was leaving an extra \n in the buffer
-// this has modified my getStringInput that I will continue using
-// http://www.cplusplus.com/forum/general/66029/
 string getFileName(string message) {
 	string fileName;
 

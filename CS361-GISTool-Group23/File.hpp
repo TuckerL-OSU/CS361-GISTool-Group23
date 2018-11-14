@@ -10,7 +10,6 @@ using std::vector;
 
 bool openFile(ifstream &, string);
 bool openFile(ofstream &, string);
-//void readFile(ifstream &, vector<int> &);
 vector<int> readFile(ifstream &, vector<int> &);
 void writeFile(ofstream &, vector<int>);
 void closeFile(ifstream &);
