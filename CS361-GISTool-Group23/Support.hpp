@@ -25,3 +25,4 @@ char getCharInput(string);
 int RNG(int, int);
 bool playAgain();
 
+#endif // !SUPPORT_HPP
