@@ -19,7 +19,7 @@ using namespace std;
 
 int validInput(int argc, Mat image1, Mat image2);
 Mat compareImages(Mat image1, Mat image2);
-
+Mat setGreyscale(Mat diffimage);
 
 int main(int argc, char** argv)
 {
@@ -37,10 +37,8 @@ int main(int argc, char** argv)
 	// get difference between 2 images
 	Mat diffimage = compareImages(image1, image2);
 
-
-	// set difference image grayscale
-	Mat diffgrey;
-	cvtColor(diffimage, diffgrey, CV_BGR2GRAY);
+	// turn image into greyscale
+	Mat diffgrey = setGreyscale(diffimage);
 
 	// write the output image
 	imwrite("diffimage.png", diffgrey);	
@@ -106,4 +104,13 @@ Mat compareImages(Mat image1, Mat image2)
 
 return diffimage;
 
+}
+
+Mat setGreyscale(Mat diffimage)
+{
+	// set difference image grayscale
+	Mat diffgrey;
+	cvtColor(diffimage, diffgrey, CV_BGR2GRAY);
+
+	return diffgrey;
 }
