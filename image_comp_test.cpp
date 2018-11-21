@@ -95,8 +95,8 @@ int imgCompare(int argc, char** argv) {
   // If intensity is not same, check if difference in pixels
   // between the two images is correct
   if (!isSame) {  
-	// Find the difference in pixels between the two images.
-	int diff = pixels - counter;
+    // Find the difference in pixels between the two images.
+    int diff = pixels - counter;
 	
     // Create a blank white image object
     Mat blank(diffimage.rows, diffimage.cols, CV_8UC3, Scalar(255, 255, 255));	  
