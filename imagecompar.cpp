@@ -5,7 +5,7 @@
  * It outputs an image where any differences between the 2 images
  * are shown in grayscale. 
  * Input: 2 images 
- * Output: 1 JPG difference image
+ * Output: 1 PNG difference image
  * To run: imagecompar <first image> <second image>
  */
 
@@ -17,22 +17,29 @@
 using namespace cv;
 using namespace std;
 
-int validInput(int argc, Mat image1, Mat image2);
+
+int validInput(int argc);
+int validImages( Mat image1, Mat image2);
 Mat compareImages(Mat image1, Mat image2);
 Mat setGreyscale(Mat diffimage);
 
 int main(int argc, char** argv)
 {
+	// check arguments
+	if (!validInput(argc))
+	{
+		return -1;
+	}
 
 	// read in the 2 images	
 	Mat image1 = imread(argv[1], CV_LOAD_IMAGE_COLOR);
 	Mat image2 = imread(argv[2], CV_LOAD_IMAGE_COLOR);
 
-	// check input data
-	if (!validInput(argc, image1, image2))
+	// check input images
+	if (!validImages(image1, image2))
 	{
 		return -1;
-	}		
+	}
 
 	// get difference between 2 images
 	Mat diffimage = compareImages(image1, image2);
@@ -46,16 +53,19 @@ int main(int argc, char** argv)
 	return 0;
 }
 
-int validInput(int argc, Mat image1, Mat image2)
+int validInput(int argc)
 {
-	
-	// check usage
+	// check arguments
 	if (argc != 3)
 	{
 		cout << "Usage: imagecompar <first image> <second image>" << endl;
 		return 0;
 	}
+	return 1;
+}
 
+int validImages(Mat image1, Mat image2)
+{
 	// check images
 	if (!image1.data)
 	{
@@ -67,14 +77,14 @@ int validInput(int argc, Mat image1, Mat image2)
 		cout << "Could not open or find second image" << endl;
 		return 0;
 	}
-
+	// check that  dimensions are same
 	if (image1.rows != image2.rows || image1.cols != image2.cols)
 	{
 		cout << "Image dimensions differ" << endl;
 		return 0;
 	}
 
-return 1;
+	return 1;
 }
 
 Mat compareImages(Mat image1, Mat image2)
