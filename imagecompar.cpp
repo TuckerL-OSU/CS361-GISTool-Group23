@@ -17,29 +17,21 @@
 using namespace cv;
 using namespace std;
 
+
+int validInput(int argc, Mat image1, Mat image2);
+
 int main(int argc, char** argv)
 {
-	// check usage
-	if (argc != 3)
-	{
-		cout << "Usage: imagecompar <first image> <second image>" << endl;
-		return -1;
-	}
 
 	// read in the 2 images	
 	Mat image1 = imread(argv[1], CV_LOAD_IMAGE_COLOR);
 	Mat image2 = imread(argv[2], CV_LOAD_IMAGE_COLOR);
-	
-	if (!image1.data)
+
+	// check number of arguments, images
+	if (!validInput(argc, image1, image2))
 	{
-		cout << "Could not open or find first image" << endl;
 		return -1;
-	}
-	if (!image2.data)
-	{
-		cout << "Could not open or find second image" << endl;
-		return -1;
-	}
+	}		
 
 	// create a blank difference image 
 	Mat diffimage(image1.rows, image1.cols, CV_8UC3, Scalar(0, 0, 0));
@@ -74,3 +66,35 @@ int main(int argc, char** argv)
 
 	return 0;
 }
+
+int validInput(int argc, Mat image1, Mat image2)
+{
+	
+	// check usage
+	if (argc != 3)
+	{
+		cout << "Usage: imagecompar <first image> <second image>" << endl;
+		return 0;
+	}
+
+	// check images
+	if (!image1.data)
+	{
+		cout << "Could not open or find first image" << endl;
+		return 0;
+	}
+	if (!image2.data)
+	{
+		cout << "Could not open or find second image" << endl;
+		return 0;
+	}
+
+	if (image1.rows != image2.rows || image1.cols != image2.cols)
+	{
+		cout << "Image dimensions differ" << endl;
+		return 0;
+	}
+
+return 1;
+}
+
