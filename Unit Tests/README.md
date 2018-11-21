@@ -19,5 +19,6 @@ Image 1 and Image 4 should be different dimensions.
 
 #### Running the test suite 
 ```
+chmod +x testsuite
 testsuite <image1> <image2> <image3> <image4>
 ```
