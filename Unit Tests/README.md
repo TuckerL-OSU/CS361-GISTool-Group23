@@ -22,3 +22,9 @@ Image 1 and Image 4 should be different dimensions.
 chmod +x testsuite
 testsuite <image1> <image2> <image3> <image4>
 ```
+
+#### Optional: Manual testing
+If you wish to run manual tests, you can run the program via:
+```
+./test <image1> <image2>
+```
