@@ -9,7 +9,7 @@ First, place the 4 images to compare in the same directory as imagecompar.cpp
 
 #### Conditions
 Image 1 and Image 2 should be the same image.  
-Image 1 and Image 3 should be the same dimension, but contain different images.  
+Image 1 and Image 3 should be the same dimensions, but contain different images.  
 Image 1 and Image 4 should be different dimensions.  
 
 #### Compilation
