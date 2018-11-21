@@ -1,10 +1,10 @@
 # CS361-GISTool-Group23
 
-## Unit Test for the image comparison program 
+## Unit Tests for the image comparison program 
 
 This program tests the functionality of the imagecompar program.  
 
-### Compilation on the flip server
+## Compilation on the flip server
 First, place the 4 images to compare in the same directory as imagecompar.cpp
 
 #### Conditions
