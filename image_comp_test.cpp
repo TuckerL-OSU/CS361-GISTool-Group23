@@ -117,6 +117,7 @@ int imgCompare(int argc, char** argv) {
    
     // Check to see if test passes or fails
     assertTrue(diff, counter);
+    cout << endl
   }
 
   // write the output image
