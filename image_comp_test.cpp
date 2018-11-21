@@ -13,6 +13,7 @@
 using namespace cv;
 using namespace std;
 
+// This function is used to compare a pair of vectors (intensity)
 int compIntensity(Vec3b x, Vec3b y) {
   if (x == y) {
     return 1;
@@ -21,6 +22,8 @@ int compIntensity(Vec3b x, Vec3b y) {
   }
 }
 
+// This function is used to see if the tests pass by
+// comparing an expected value (x) to the actual value (y).
 int assertTrue(int x, int y) {
   if (x == y) {
     cout << "TEST SUCCESSFUL" << endl;
@@ -47,6 +50,7 @@ int imgCompare(int argc, char** argv) {
     cout << "Could not open or find first image" << endl;
     return -1;
   } 
+	
   if (!image2.data) {
     cout << "Could not open or find second image" << endl;
     return -1;
@@ -58,22 +62,26 @@ int imgCompare(int argc, char** argv) {
   // Total pixels
   int pixels = image1.rows * image1.cols;
   int counter = 0;
+	
   cout << "TEST: Intensities are the same for both images" << endl;
   cout << "NOTE: Test will fail if images are different" << endl;
+	
   // loop through the pixels of images
   for (int i = 0; i < image1.rows; i++) {
     for (int j = 0; j < image1.cols; j++) {
+	    
       // get current pixel's intensity in image 1 				
       Vec3b intensity1 = image1.at<Vec3b>(Point(j, i));
+	    
       // get current pixel's intensity in image 2
       Vec3b intensity2 = image2.at<Vec3b>(Point(j, i));
       counter += compIntensity(intensity1, intensity2);
+	    
       // set difference image's pixel to the difference of image1 and image2
       // subtract from 255 to have white background	
       diffimage.at<Vec3b>(Point(j, i))[0] = 255 - abs(intensity1.val[0] - intensity2.val[0]);
       diffimage.at<Vec3b>(Point(j, i))[1] = 255 - abs(intensity1.val[1] - intensity2.val[1]);
-      diffimage.at<Vec3b>(Point(j, i))[2] = 255 - abs(intensity1.val[2] - intensity2.val[2]); 
-			
+      diffimage.at<Vec3b>(Point(j, i))[2] = 255 - abs(intensity1.val[2] - intensity2.val[2]); 		
     }
   }
 
@@ -88,11 +96,15 @@ int imgCompare(int argc, char** argv) {
   // between the two images is correct
   if (!isSame) {
     // Create a blank white image object
-    Mat blank(diffimage.rows, diffimage.cols, CV_8UC3, Scalar(255, 255, 255));
+    Mat blank(diffimage.rows, diffimage.cols, CV_8UC3, Scalar(255, 255, 255));	  
     counter = 0;
     cout << "TEST: Diffimage file has correct amount of different pixels" << endl;
+	
+    // Compare the blank image to the diffimage
     for (int i = 0; i < diffimage.rows; i++) {
       for (int j = 0; j < diffimage.cols; j++) {
+	
+	// Initialize the intensities for comparison
         Vec3b intensity1 = blank.at<Vec3b>(Point(j, i));
         Vec3b intensity2 = diffimage.at<Vec3b>(Point(j, i));
         
@@ -102,7 +114,7 @@ int imgCompare(int argc, char** argv) {
         }
       }
     }
-    
+   
     // Check to see if test passes or fails
     assertTrue(diff, counter);
   }
