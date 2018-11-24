@@ -1,25 +1,34 @@
 #!/bin/sh
 
+echo
+echo "Tests will be formed using these conditions:"
+echo "Image 1: $1"
+echo "Image 2: $2"
+echo "Image 3: $3"
+echo "Image 4: $4"
+echo "Damage Parameter: $5"
+echo
+
 echo "Test 1: Not enough arguments" 1>&2
 ./test
 echo
 
 echo "Test 2: Invalid first image" 1>&2 
-./test "fake.png" "fake2.png"
+./test "fake.png" "fake2.png" $5 
 echo
 
 echo "Test 3: Invalid second image" 1>&2
-./test $1 "fake3.png"
+./test $1 "fake3.png" $5
 echo
 
 echo "Test 4: Differing dimensions between the two images" 1>&2
-./test $1 $4
+./test $1 $4 $5
 echo
 
 echo "Test 5: Images are identical"
-./test $1 $2
+./test $1 $2 $5
 echo
 
 echo "Test 6: Images are different"
-./test $1 $3
+./test $1 $3 $5
 echo
