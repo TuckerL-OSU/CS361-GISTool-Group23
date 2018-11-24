@@ -13,10 +13,11 @@
 using namespace cv;
 using namespace std;
 
-int checkUsage(int argc);
-int validInput(int argc, Mat image1, Mat image2);
+int validInput(int argc);
+int validImages( Mat image1, Mat image2);
 Mat compareImages(Mat image1, Mat image2);
 Mat setGreyscale(Mat diffimage);
+int damageType(char* damageParam);
 
 // This function is used to compare a pair of vectors (intensity)
 int compIntensity(Vec3b x, Vec3b y) {
@@ -49,9 +50,9 @@ int assertTrue(int x, int y) {
 int main(int argc, char** argv)
 {
 	// Test for correct # of arguments
-	if (argc != 3) 
+	if (argc != 4) 
 	{
-		assertTrue(0, checkUsage(argc));
+		assertTrue(0, validInput(argc));
 		return -1;
 	}
 
@@ -60,12 +61,43 @@ int main(int argc, char** argv)
 	Mat image2 = imread(argv[2], CV_LOAD_IMAGE_COLOR);
 
 	// check input data
-	int x = validInput(argc, image1, image2);
+	int x = validImages(image1, image2);
 	if (!x)
 	{
 		assertTrue(0, x);
 		return -1;
-	}		
+	}
+	
+	// check damage type
+	int damage = damageType(argv[3]);
+	if (damage == 1 || damage == 2) 
+	{
+		cout << "TEST: damageType function correctly assigns the damage type" << endl;
+	}
+	else 
+	{
+		cout << "TEST: Damage type not recognized" << endl;
+	}
+	
+
+	// output damage type info	
+	switch(damage) 
+	{
+		case 1:
+			cout << "Analysis for road damage" << endl;
+			assertTrue(1, damage);
+                        cout << endl;
+			break;
+		case 2:
+			cout << "Analysis for flood damage" << endl;
+			assertTrue(2, damage);
+                        cout << endl;
+			break;
+		case 0:
+			cout << "Damage type parameter was not recognized" << endl;
+			assertTrue(1, damage);
+                        cout << endl;
+	}	
 
 	// get difference between 2 images
 	Mat diffimage = compareImages(image1, image2);
@@ -79,17 +111,19 @@ int main(int argc, char** argv)
 	return 0;
 }
 
-int checkUsage(int argc)
+int validInput(int argc)
 {
-	if (argc != 3)
+	// check arguments
+	if (argc != 4)
 	{
 		cout << "TEST: Invalid Number of Arguments" << endl;
-		cout << "Usage: imagecompar <first image> <second image>" << endl;
+		cout << "Usage: imagecompar <first image> <second image> <damage type>" << endl;
 		return 0;
 	}
+	return 1;
 }
 
-int validInput(int argc, Mat image1, Mat image2)
+int validImages(Mat image1, Mat image2)
 {
 	// check images
 	if (!image1.data)
@@ -113,7 +147,23 @@ int validInput(int argc, Mat image1, Mat image2)
 		return 0;
 	}
 
-return 1;
+	return 1;
+}
+
+int damageType(char* damageParam)
+{
+	if (strcmp(damageParam, "road") == 0)
+	{
+		return 1;
+	}
+	else if (strcmp(damageParam, "flood") == 0)
+	{
+		return 2;
+	}
+	else
+	{
+		return 0;
+	}
 }
 
 Mat compareImages(Mat image1, Mat image2)
