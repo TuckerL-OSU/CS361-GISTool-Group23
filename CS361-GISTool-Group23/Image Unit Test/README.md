@@ -11,6 +11,8 @@ First, place the 4 images to compare in the same directory as imagecompar.cpp
 Image 1 and Image 2 should be the same image.  
 Image 1 and Image 3 should be the same dimensions, but contain different images.  
 Image 1 and Image 4 should be different dimensions.  
+Damage type can be either road or flood. If a non-existant type is entered,
+the program will notify the user.
 
 #### Compilation
 ```
@@ -20,11 +22,11 @@ Image 1 and Image 4 should be different dimensions.
 #### Running the test suite 
 ```
 chmod +x testsuite
-testsuite <image1> <image2> <image3> <image4>
+testsuite <image1> <image2> <image3> <image4> <damage_type>
 ```
 
 #### Optional: Manual testing
 If you wish to run manual tests, you can run the program via:
 ```
-./test <image1> <image2>
+./test <image1> <image2> <damage_type>
 ```
