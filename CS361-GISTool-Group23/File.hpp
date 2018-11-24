@@ -14,7 +14,7 @@ vector<int> readFile(ifstream &, vector<int> &);
 void writeFile(ofstream &, vector<int>);
 void closeFile(ifstream &);
 void closeFile(ofstream &);
-string getFileName(string);
-
+string formatFileName(string);
+bool validFile(char*);
 
 #endif // !FILE_HPP
