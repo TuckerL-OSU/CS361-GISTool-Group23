@@ -24,3 +24,4 @@ If the input is given no file extension, it will add .png to it then attempt to 
 
 - **To compile:** type "make" at the command line, in the same directory as noted above.  
 - **To run:** file_test <image 1> <image 2>
+- **Output:** success shows nothing, failure says which file failed.
