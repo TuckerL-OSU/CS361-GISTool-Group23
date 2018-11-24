@@ -9,6 +9,6 @@ It uses OpenCV library (flip has it installed)
 
 - Place the 2 images to compare in the same directory as imagecompar.cpp
 
-- **To compile:** g++ `pkg-config --cflags opencv` imagecompar.cpp `pkg-config --libs opencv` -o imagecompar  
+- **To compile:** g++ `` `pkg-config --cflags opencv` `` imagecompar.cpp `` `pkg-config --libs opencv` `` -o imagecompar  
 - **To run:** imagecompar <image 1> <image 2>
 - **Output:** diffimage.jpg is the difference image in grayscale
