@@ -23,4 +23,5 @@ If the input is given no file extension, it will add .png to it then attempt to 
 - Place the files you want to test in the same directory as file.*, support.* and the makefile
 
 - **To compile:** type "make" at the command line, in the same directory as noted above.  
-- **To run:** file_test <image 1> <image 2>
+- **To run:** file_test <image 1> <image 2> <damage type>
+- **Output:** Shows success or shows where it failed.

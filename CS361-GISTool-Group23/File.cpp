@@ -72,11 +72,12 @@ bool validFile(char* fileName) {
 }
 
 int main(int argc, char** argv) {
-	if (argc != 3) {
+	if (argc != 4) {
 		cout << "Invalid number of Arguments" << endl;
 		return -1;
 	}
 
+	 // check files
 	if (!validFile(argv[1])) {
 		cout << "Could not open file 1: " << argv[1]  << endl;
 		return -1;
@@ -86,6 +87,14 @@ int main(int argc, char** argv) {
 		cout << "Could not open file 2: " << argv[2] << endl;
 		return -1;
 	}
+
+	// check damage parameter
+	if (strcmp(argv[3], "road") != 0 && strcmp(argv[3], "flood") != 0) {
+		cout << "The damage type " << argv[3] << " was not recognized. Try road or flood." << endl;
+		return -1;
+	}
+
+	cout << "All parameters look good." << endl;
 
 	return 0;
 }
