@@ -34,7 +34,8 @@ int main(int argc, char** argv)
 
 	// check damage type
 	int damage = damageType(argv[3]);
-	
+
+	// output damage type info	
 	switch(damage) 
 	{
 		case 1:
