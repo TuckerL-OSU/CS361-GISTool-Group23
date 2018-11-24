@@ -10,8 +10,8 @@ SRCS = File.cpp Support.cpp
 
 HEADERS = File.hpp Support.hpp
 	
-File_Test: ${OBJS} ${Headers}
-	${CXX} ${OBJS} -o File_Test
+file_test: ${OBJS} ${Headers}
+	${CXX} ${OBJS} -o file_test
 			
 File: ${OBJS} ${Headers}
 	${CXX} ${OBJS} -o File
@@ -24,4 +24,4 @@ ${OBJS}: ${SRCS}
 
 clean:
 	rm *.o
-	rm File_Test
+	rm file_test
