@@ -17,10 +17,12 @@
 using namespace cv;
 using namespace std;
 
+
 int validInput(int argc);
-int validImages(Mat image1, Mat image2);
+int validImages( Mat image1, Mat image2);
 Mat compareImages(Mat image1, Mat image2);
 Mat setGreyscale(Mat diffimage);
+int damageType(char* damageParam);
 
 int main(int argc, char** argv)
 {
@@ -29,6 +31,21 @@ int main(int argc, char** argv)
 	{
 		return -1;
 	}
+
+	// check damage type
+	int damage = damageType(argv[3]);
+	
+	switch(damage) 
+	{
+		case 1:
+			cout << "Analysis for road damage" << endl;
+			break;
+		case 2:
+			cout << "Analysis for flood damage" << endl;
+			break;
+		case 0:
+			cout << "Damage type parameter was not recognized" << endl;
+	}	
 
 	// read in the 2 images	
 	Mat image1 = imread(argv[1], CV_LOAD_IMAGE_COLOR);
@@ -55,9 +72,9 @@ int main(int argc, char** argv)
 int validInput(int argc)
 {
 	// check arguments
-	if (argc != 3)
+	if (argc != 4)
 	{
-		cout << "Usage: imagecompar <first image> <second image>" << endl;
+		cout << "Usage: imagecompar <first image> <second image> <damage type>" << endl;
 		return 0;
 	}
 	return 1;
@@ -84,6 +101,22 @@ int validImages(Mat image1, Mat image2)
 	}
 
 	return 1;
+}
+
+int damageType(char* damageParam)
+{
+	if (strcmp(damageParam, "road") == 0)
+	{
+		return 1;
+	}
+	else if (strcmp(damageParam, "flood") == 0)
+	{
+		return 2;
+	}
+	else
+	{
+		return 0;
+	}
 }
 
 Mat compareImages(Mat image1, Mat image2)
