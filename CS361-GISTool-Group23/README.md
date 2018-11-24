@@ -26,6 +26,3 @@ If the input is given no file extension, it will add .png to it then attempt to 
 
 - **To run:** file_test <image 1> <image 2> <damage type(road or flood)>
 - **Output:** Shows success or shows where it failed.
-=======
-- **To run:** file_test <image 1> <image 2>
-- **Output:** success shows nothing, failure says which file failed.
