@@ -18,8 +18,7 @@ using std::numeric_limits;
 using std::streamsize;
 using std::stringstream;
 
-
-int getValidInteger(string, int, int);
+int getInteger(string, int, int);
 string getStringInput();
 char getCharInput(string);
 int RNG(int, int);

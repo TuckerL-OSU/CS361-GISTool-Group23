@@ -17,9 +17,8 @@
 using namespace cv;
 using namespace std;
 
-
 int validInput(int argc);
-int validImages( Mat image1, Mat image2);
+int validImages(Mat image1, Mat image2);
 Mat compareImages(Mat image1, Mat image2);
 Mat setGreyscale(Mat diffimage);
 
