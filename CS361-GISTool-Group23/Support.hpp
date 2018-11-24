@@ -8,6 +8,7 @@
 #include <locale>
 #include <sstream>
 #include <cstdlib>
+#include <string.h>
 
 using std::string;
 using std::cout;
