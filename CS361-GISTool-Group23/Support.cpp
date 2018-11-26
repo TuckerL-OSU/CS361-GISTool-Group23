@@ -1,11 +1,11 @@
 #include "Support.hpp"
 
-int getValidInteger(string message, int min, int max) {
+int getInteger(string message, int min, int max) {
 	string str = "";
 	int newStr = 0;
 	bool intCheck = false;
 
-	cout << message;
+	//cout << message;
 	while (!intCheck) {
 		cin >> str;
 		stringstream stream(str);
@@ -48,7 +48,7 @@ char getCharInput(string message) {
 	cin.clear();
 	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-	cout << message;
+	//cout << message;
 	while (!charCheck) {
 		cin >> str;
 		stringstream stream(str);
@@ -82,7 +82,7 @@ bool playAgain() {
 	std::cout << "1. Yes." << std::endl;
 	std::cout << "2. No." << std::endl;
 
-	tempChoice = getValidInteger("Enter an option: ", 1, 2);
+	tempChoice = getInteger("Enter an option: ", 1, 2);
 
 	switch (tempChoice) {
 	case 1:

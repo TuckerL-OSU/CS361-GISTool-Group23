@@ -2,12 +2,14 @@
 
 bool openFile(ifstream &inputFile, string fileName) {
 	inputFile.open(fileName);
-	return !inputFile;
+	//return !inputFile;
+	return 1;
 }
 
 bool openFile(ofstream &outputFile, string fileName) {
 	outputFile.open(fileName);
-	return !outputFile;
+	//return !outputFile;
+	return 1;
 }
 
 void closeFile(ifstream &inputFile) {
@@ -20,33 +22,79 @@ void closeFile(ofstream &outputFile) {
 		outputFile.close();
 }
 
-vector<int> readFile(ifstream &inputFile, vector<int> &values) {
-	int input;
+//vector<int> readFile(ifstream &inputFile, vector<int> &values) {
+//	int input;
+//
+//	while (inputFile >> input) {
+//		values.push_back(input);
+//	}
+//	return values;
+//}
+//
+//void writeFile(ofstream &outputFile, vector<int> sorted) {
+//	for (int i = 0; i < sorted.size(); i++) {
+//		outputFile << sorted[i] << " ";
+//	}
+//}
 
-	while (inputFile >> input) {
-		values.push_back(input);
-	}
-	return values;
-}
+string formatFileName(string fileName) {
 
-void writeFile(ofstream &outputFile, vector<int> sorted) {
-	for (int i = 0; i < sorted.size(); i++) {
-		outputFile << sorted[i] << " ";
-	}
-}
-
-string getFileName(string message) {
-	string fileName;
-
-	cout << message;
-
-	fileName = getStringInput();
+	//cout << "fileName2: " << fileName << endl;
 
 	if (fileName.length() > 4 &&
-		fileName.substr(fileName.length() - 4) == ".txt") {
+		fileName.substr(fileName.length() - 4) == ".png") {
 		return fileName;
 	}
 	else {
-		return fileName.append(".txt");
+		return fileName.append(".png");
 	}
+}
+
+bool validFile(char* fileName) {
+	// create filestream
+	ifstream ifs;
+
+	//cout << "fileName1: " << fileName << endl;
+
+	// check if the name has .png or append it if it doesn't
+	string name = formatFileName(fileName);
+
+	//cout << "name: " << name << endl;
+
+	//now try to open the file
+	if (openFile(ifs, name)) {
+		closeFile(ifs);
+		return 1;
+	}
+	else {
+		return 0;
+	}
+}
+
+int main(int argc, char** argv) {
+	if (argc != 4) {
+		cout << "Invalid number of Arguments" << endl;
+		return -1;
+	}
+
+	 // check files
+	if (!validFile(argv[1])) {
+		cout << "Could not open file 1: " << argv[1]  << endl;
+		return -1;
+	}
+
+	if (!validFile(argv[2])) {
+		cout << "Could not open file 2: " << argv[2] << endl;
+		return -1;
+	}
+
+	// check damage parameter
+	if (strcmp(argv[3], "road") != 0 && strcmp(argv[3], "flood") != 0) {
+		cout << "The damage type " << argv[3] << " was not recognized. Try road or flood." << endl;
+		return -1;
+	}
+
+	cout << "All parameters look good." << endl;
+
+	return 0;
 }

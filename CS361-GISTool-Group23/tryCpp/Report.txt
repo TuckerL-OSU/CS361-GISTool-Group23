@@ -1,0 +1,12 @@
+Number of Images: 3
+File 1: letter
+File 2: places
+File 3: dkadk
+Type of Damage Analysis: none
+Function Name: typea    Success: 0
+Function Name: typeb    Success: 1
+Function Name: typec    Success: 0
+Function Name: typed    Success: 1
+Function Name: typee    Success: 1
+Function Name: typef    Success: 1
+Function Name: typey    Success: 0
