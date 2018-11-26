@@ -15,7 +15,10 @@ Report::Report(){
   string typeOfAnalysis;
   int paramNum = 0;
   int curFill = 0;
+  int numberOfReports = 0;
   std::vector <std::string> paramNames;
+  std::vector <std::string> functionNames;
+  std::vector <int> functionStatus;
 }
 
 void Report::setParaNumber(int number){
@@ -55,4 +58,20 @@ int Report::getNumberOfArgs(){
 
 string Report::getDamageType(){
       return damage_type;
+}
+
+void Report::setReport(string reportName, int successNumber){
+    functionNames.push_back(reportName);
+    functionStatus.push_back(successNumber);
+    numberOfReports++;
+}
+
+int Report::getNumberReports(){
+    return numberOfReports;
+}
+
+
+string Report::PrintReports(int section){
+    string item = functionNames[section] + functionStatus[section];
+    return item;
 }

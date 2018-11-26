@@ -23,14 +23,19 @@ void createReport(int argc, char const *argv[]){
   }
   //store type of function that ran it
   newReport.setType(argv[0]);
+
+  //create and open file for report
   ofstream outfile ("Report.txt");
   outfile << "Number of Images: " << newReport.getNumberOfArgs() << endl;
 
+  //print into report the file names
   for (int i = 0; i < newReport.getNumberOfArgs(); i++) {
       outfile << "File "<< i+1 << ": " << newReport.getParaName(i) << std::endl;
   }
-
+  //print into report type of damage Analysis
   outfile << "Type of Damage Analysis: " << newReport.getDamageType();
+
+  
   outfile.close();
 }
 
