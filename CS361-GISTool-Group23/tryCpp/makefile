@@ -1,14 +1,14 @@
 CXXFLAGS = -std=c++0x
 
-test: try.o  report.o
-	g++ ${CXXFLAGS} try.o report.o  -o test
+report: createReport.o  report.o
+	g++ ${CXXFLAGS} createReport.o report.o  -o report
 
-try.o: try.cpp
-	g++ ${CXXFLAGS} -c try.cpp
+createReport.o: createReport.cpp
+	g++ ${CXXFLAGS} -c createReport.cpp
 
 
 report.o: report.cpp report.hpp
 	g++ ${CXXFLAGS} -c report.cpp
 
 clean:
-	rm *.o test
+	rm *.o report
