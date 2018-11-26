@@ -23,7 +23,7 @@ Report::Report(){
 
 void Report::setParaNumber(int number){
   paramNum = number;
-  cout << "Number of parameters: " << paramNum << endl;
+  //cout << "Number of parameters: " << paramNum << endl;
 }
 
 void Report::setType(const char *param){
@@ -31,11 +31,11 @@ void Report::setType(const char *param){
     if(typeOfAnalysis.compare("./imagecompar")!=0){
       numberOfArgs = paramNum;
       damage_type = "none";
-      cout << "./imagecompar: " << numberOfArgs << endl;
+    //  cout << "./imagecompar: " << numberOfArgs << endl;
     }else if(typeOfAnalysis.compare("./testsuite")==0){
       numberOfArgs = paramNum-1;
       damage_type = paramNames[paramNum-2];
-      cout << "number of args: " << numberOfArgs << "type of damage" << damage_type << endl;
+      //cout << "number of args: " << numberOfArgs << "type of damage" << damage_type << endl;
     }
 }
 
@@ -71,7 +71,8 @@ int Report::getNumberReports(){
 }
 
 
-string Report::PrintReports(int section){
-    string item = functionNames[section] + functionStatus[section];
+string Report::printReports(int section){
+    string item = "Function Name: " + functionNames[section] + "    "+ "Success: " + to_string(functionStatus[section]);
+    //cout << item;
     return item;
 }

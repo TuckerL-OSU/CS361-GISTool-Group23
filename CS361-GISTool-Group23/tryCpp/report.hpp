@@ -23,6 +23,6 @@ public:
   string getDamageType();
   void setReport(string reportName, int successNumber);
   int getNumberReports();
-  string PrintReports(int section);
+  string printReports(int section);
 };
 #endif
