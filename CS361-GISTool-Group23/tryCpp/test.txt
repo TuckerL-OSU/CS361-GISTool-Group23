@@ -1,4 +1,3 @@
-Number of Parameters: 3
-Parameter: hello
-Parameter: hello1
-Parameter: hello3
+Number of Parameters: 2
+File 0: type1
+File 1: type2

@@ -1,0 +1,4 @@
+Number of Images: 2
+File 1: type1
+File 2: type2
+Type of Damage Analysis: none
