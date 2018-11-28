@@ -1,12 +1,15 @@
 /*
- * Image Comparator
+ * Discoloration Detector
  * CS 361 Group 23
- * Description: This program compares 2 images pixel by pixel.
- * It outputs an image where any differences between the 2 images
- * are shown in grayscale. 
- * Input: 2 images 
- * Output: 1 PNG difference image
- * To run: imagecompar <first image> <second image>
+ * Description: This program computes combined RGB value "distance"
+ * for each pixel of 2 images, uses it as percent of maximum.  If this
+ * value is greater than the threshold value entered as command-line
+ * parameter, the piexel is marked in red. Results are saved in a
+ * new image that shows the 2nd image with discoloration marked on
+ * it in red.
+ * Input: 2 images of the same area
+ * Output: 1 PNG difference image with discoloration marked
+ * To run: discolordetect <first image> <second image> <damage type> <discolor threshold>
  */
 
 #include <opencv2/core/core.hpp>
@@ -94,7 +97,7 @@ int validImages(Mat image1, Mat image2)
 		cout << "Could not open or find second image" << endl;
 		return 0;
 	}
-	// check that  dimensions are same
+	// check that dimensions are same
 	if (image1.rows != image2.rows || image1.cols != image2.cols)
 	{
 		cout << "Image dimensions differ" << endl;
@@ -140,6 +143,7 @@ Mat detectDiscolor(Mat image1, Mat image2, float discolorThreshold)
 			// get current pixel's intensity in image 2
 			Vec3b intensity2 = image2.at<Vec3b>(Point(j, i));
 
+			// collect rgb values
 			float blue1 = intensity1.val[0];
 			float green1 = intensity1.val[1];
 			float red1 = intensity1.val[2];
@@ -147,13 +151,17 @@ Mat detectDiscolor(Mat image1, Mat image2, float discolorThreshold)
 			float green2 = intensity2.val[1];
 			float red2 = intensity2.val[2];
 
+			// compute combined pixel intensity, using distance formula for 3 dimensions
 			float discoloration = sqrt(pow((blue2 - blue1), 2) + pow((green2 - green1), 2) + pow((red2 - red1), 2)); 
+			// compute discoloration amount, as percent maximum
 			float discolorPercent = (discoloration * 100) / discolorMax;
 	
+			// copy pixel of the 2nd image
 			diffimage.at<Vec3b>(Point(j, i))[0] = blue1;
 			diffimage.at<Vec3b>(Point(j, i))[1] = green1;
 			diffimage.at<Vec3b>(Point(j, i))[2] = red1;
 
+			// mark discoloration if greater than threshold
 			if (discolorPercent > discolorThreshold)
 			{
 				detected = true;
@@ -162,8 +170,11 @@ Mat detectDiscolor(Mat image1, Mat image2, float discolorThreshold)
 			} 
 		}
 	}
+// print out message for user
 outputResult(detected);
-return diffimage;
+
+// result image
+return diffimage; 
 
 }
 
