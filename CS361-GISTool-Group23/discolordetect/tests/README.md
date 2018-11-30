@@ -13,20 +13,21 @@ Image 1 and Image 3 should be the same dimensions, but contain different images.
 Image 1 and Image 4 should be different dimensions.  
 Damage type can be either road or flood. If a non-existant type is entered,
 the program will notify the user.
+Indicate a tolerance percentage (i.e. 20%)
 
 #### Compilation
 ```
- g++ `pkg-config --cflags opencv` imageCompTest.cpp `pkg-config --libs opencv` -o test  
+ g++ `pkg-config --cflags opencv` discolorTest.cpp `pkg-config --libs opencv` -o test  
 ```
 
 #### Running the test suite 
 ```
 chmod +x testsuite
-testsuite <image1> <image2> <image3> <image4> <damage_type>
+testsuite <image1> <image2> <image3> <image4> <damage_type> <threshold %>
 ```
 
 #### Optional: Manual testing
 If you wish to run manual tests, you can run the program via:
 ```
-./test <image1> <image2> <damage_type>
+./test <image1> <image2> <damage_type> <threshold %>
 ```
