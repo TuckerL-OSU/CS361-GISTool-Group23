@@ -4,14 +4,17 @@ CXXFLAGS += -Wall
 CXXFLAGS += -pedantic-errors
 CXXFLAGS += -g
 
-OBJS = File.o
+OBJS = File.o Support.o
 
-SRCS = File.cpp
+SRCS = File.cpp Support.cpp
 
-HEADERS = File.hpp
+HEADERS = File.hpp Support.hpp
 	
 file_test: ${OBJS} ${Headers}
 	${CXX} ${OBJS} -o file_test
+
+Support: ${OBJS} ${Headers}
+	${CXX} ${OBJS} -o Support
 			
 File: ${OBJS} ${Headers}
 	${CXX} ${OBJS} -o File

@@ -10,19 +10,23 @@
 #include <cstdlib>
 #include <string.h>
 
-using std::string;
-using std::cout;
-using std::cin;
-using std::endl;
-using std::getline;
-using std::numeric_limits;
-using std::streamsize;
-using std::stringstream;
+using namespace std;
+//using std::string;
+//using std::cout;
+//using std::cin;
+//using std::endl;
+//using std::getline;
+//using std::numeric_limits;
+//using std::streamsize;
+//using std::stringstream;
 
 int getInteger(string, int, int);
 string getStringInput();
-char getCharInput(string);
+//char** parseInput(char*, int);
+char** parseInput(string, int);
+
+char* getCharInput();
 int RNG(int, int);
-bool playAgain();
+int playAgain();
 
 #endif // !SUPPORT_HPP
