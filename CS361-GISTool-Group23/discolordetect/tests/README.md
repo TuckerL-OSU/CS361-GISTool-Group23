@@ -17,7 +17,7 @@ Indicate a tolerance percentage (i.e. 20%)
 
 #### Compilation
 ```
- g++ `pkg-config --cflags opencv` discolorTest.cpp `pkg-config --libs opencv` -o test  
+ g++ `pkg-config --cflags opencv` discolorTests.cpp `pkg-config --libs opencv` -o test  
 ```
 
 #### Running the test suite 
