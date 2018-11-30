@@ -56,7 +56,7 @@ bool validFile(char* fileName) {
 	}
 }
 
-char** getNewFiles(char **args) {
+void getNewFiles(char **args) {
 	const int numFiles = 2;
 	char* files[numFiles];
 	for (int i = 0; i < numFiles; i++) {

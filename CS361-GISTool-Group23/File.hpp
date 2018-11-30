@@ -14,6 +14,6 @@ void closeFile(ifstream &);
 void closeFile(ofstream &);
 string formatFileName(string);
 bool validFile(char*);
-char** getNewFiles(char**);
+void getNewFiles(char**);
 
 #endif // !FILE_HPP
