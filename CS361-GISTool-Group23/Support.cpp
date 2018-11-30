@@ -5,7 +5,7 @@ int getInteger(string message, int min, int max) {
 	int newStr = 0;
 	bool intCheck = false;
 
-	//cout << message;
+	cout << message;
 	while (!intCheck) {
 		cin >> str;
 		stringstream stream(str);
@@ -42,69 +42,38 @@ string getStringInput() {
 }
 
 char** parseInput(string str, int numFiles) {
-//char** parseInput(char* str, int numFiles) {
 	char** parsedStr = (char **)malloc(numFiles * sizeof(char *));
 	for (int i = 0; i < numFiles; i++) {
 		parsedStr[i] = (char *)malloc(255 * sizeof(char));
 	}
-	string delimiter = " ";
+	char *input = new char[str.length() + 1];
+	strcpy(input, str.c_str());
 
-	cout << "Parsing str: " << str << endl;
+	//cout << "Parsing str: " << str << endl;
+	//cout << "char input: " << input << endl;
+	//cout << "input: " << input << endl;
 
-	size_t pos = 0;
-	string token;
-	while ((pos = str.find(delimiter)) != string::npos) {
-		token = str.substr(0, pos);
-		cout << token << endl;
-		str.erase(0, pos + delimiter.length());
+	char* token;
+
+	token = strtok(input, " \n\0");
+	int j = 0;
+
+	while (j < numFiles) {
+		//cout << "token: " << token << endl;
+		strcpy(parsedStr[j], token);	
+		//cout << "parsedStr[j(" << j << ")]: " << parsedStr[j] << endl;
+		token = strtok(NULL, " \n\0");
+
+		if (token == NULL) {
+			break;
+		}
+		j++;
 	}
 
-
-	//int i = 0;
-	//int j = 0;
-	//int k = 0;
-	//
-	//while (j < numFiles) {
-	//	while ((strcmp(str.c_str(), delimiter) && (strcmp(str.substr(i, i), "/n") != 0)) {
-	//		i++;
-	//	}
-	//	strcpy(parsedStr[j], str.substr(k, i).c_str());
-
-	//	j++;
-	//	k = i + 1;
+	//cout << "Ending Parsing" << endl; 
+	//for (int x = 0; x < numFiles; x++) {
+	//	cout << "parsed: " << parsedStr[x] << endl;
 	//}
-
-	
-
-	//while (j < numFiles) {
-	////while (strcmp(str + i, "/n") != 0) {
-	//	if (str.substr(i,i) != delimiter || str.substr(i, i) != "/n") {
-	//		cout << "str[i(" << i << "): " << str.substr(i, i) << endl;
-
-	//		strcpy(parsedStr[j], str.substr(k, i).c_str());
-	//		//cout << "parsedStr[j(" << j << ")] + k(" << k << "): " << parsedStr[j] + k << endl;
-
-	//		/*k++;*/
-	//	}
-	//	else {
-	//		j++;
-	//		k = i + 1;
-	//		i = 0;
-	//	}
-
-	//	//if (i == 5) {
-	//	//	break;
-	//	//}
-
-	//	// when the delimiter is hit, it will allow the nested while to read the next parameter
-	//	// into the next bin in parsed
-	//	i++;
-	//}
-
-	cout << "Ending Parsing parsed: "; 
-	for (int x = 0; x < numFiles; x++) {
-		cout << parsedStr[x] << endl;
-	}
 
 	return parsedStr;
 }
@@ -134,8 +103,6 @@ int playAgain() {
 	std::cout << "2. New Road Damage Test" << std::endl;
 	std::cout << "3. New Flood Damage Test" << std::endl;
 	std::cout << "4. Quit" << std::endl;
-
-
 
 	tempChoice = getInteger("Enter an option: ", 1, 4);
 

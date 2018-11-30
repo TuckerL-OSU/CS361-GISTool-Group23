@@ -22,7 +22,6 @@ using namespace std;
 
 int getInteger(string, int, int);
 string getStringInput();
-//char** parseInput(char*, int);
 char** parseInput(string, int);
 
 char* getCharInput();

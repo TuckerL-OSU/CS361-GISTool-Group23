@@ -56,26 +56,32 @@ bool validFile(char* fileName) {
 	}
 }
 
-void getNewFiles(char **args) {
+char** getNewFiles(char **args) {
 	const int numFiles = 2;
 	char* files[numFiles];
 	for (int i = 0; i < numFiles; i++) {
 		files[i] = (char *)malloc(255 * sizeof(char));
 	}
+
 	// display "fake out" of command
 	cout << args[0] << " " << args[1] << " ";
 
 	//char* str = getCharInput();
 	string str = getStringInput();
 
-	cout << "About to parse str: " << str << endl;
+	//cout << "About to parse str: " << str << endl;
 
-	strcpy(*files, *parseInput(str, numFiles));
+	// get the names of the files to a usable format
+	// function call with the array gets the position in to functions returned array
+	for (int j = 0; j < numFiles; j++) {
+		strcpy(files[j], parseInput(str, numFiles)[j]);
+	}
 
 	int i = 0;
 	int j = 2;
 
-	while (files[i]) {
+	while (i < numFiles) {
+		//cout << "files[" << i << "]: " << files[i] << endl;
 		strcpy(args[j], files[i]);
 		i++;
 		j++;
@@ -102,7 +108,6 @@ bool runProgram(char** parameters) {
 
 		cout << "All parameters look good." << endl;
 
-
 		switch (playAgain()) {
 		case 1:
 			continue;
@@ -110,7 +115,6 @@ bool runProgram(char** parameters) {
 		case 2:
 			strcpy(parameters[1], "road");
 			// get new files
-			//getNewFiles(parameters[2], parameters[3]);
 			getNewFiles(parameters);
 			break;
 		case 3:
