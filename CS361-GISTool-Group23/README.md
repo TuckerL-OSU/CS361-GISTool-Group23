@@ -26,7 +26,7 @@ If the input is given no file extension, it will add .png to it then attempt to 
 
 - **To compile:** type "make" at the command line, in the same directory as noted above.  
 
-- **To run:** file_test <image 1> <image 2> <damage type(road or flood)>
+- **To run:** file_test <damage type(road or flood)> <image 1> <image 2>
 - **Output:** Shows success or shows where it failed.
 
 ## discolordetect feature 

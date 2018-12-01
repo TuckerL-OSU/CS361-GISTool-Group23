@@ -18,6 +18,7 @@ int validImages( Mat image1, Mat image2);
 Mat compareImages(Mat image1, Mat image2);
 Mat setGreyscale(Mat diffimage);
 int damageType(char* damageParam);
+int checkTolParam(char* tolerance);
 
 // This function is used to compare a pair of vectors (intensity)
 int compIntensity(Vec3b x, Vec3b y) {
@@ -50,7 +51,7 @@ int assertTrue(int x, int y) {
 int main(int argc, char** argv)
 {
 	// Test for correct # of arguments
-	if (argc != 4) 
+	if (argc != 6) 
 	{
 		assertTrue(0, validInput(argc));
 		return -1;
@@ -99,6 +100,44 @@ int main(int argc, char** argv)
                         cout << endl;
 	}	
 
+	int tolerance = checkTolParam(argv[4]);
+	if (damage == 1 || damage == 2) 
+	{
+		cout << "TEST: Correctly assigns the tolerance type" << endl;
+	}
+	else 
+	{
+		cout << "TEST: Tolerance type recognized" << endl;
+	}
+	
+
+	// output tolerance type info	
+	switch(tolerance) 
+	{
+		case 1:
+			cout << "Analysis for length changes" << endl;
+			assertTrue(1, tolerance);
+                        cout << endl;
+			break;
+		case 2:
+			cout << "Analysis for width changes" << endl;
+			assertTrue(2, tolerance);
+                        cout << endl;
+			break;
+		case 0:
+			cout << "Tolerance type parameter was not recognized" << endl;
+			assertTrue(1, tolerance);
+                        cout << endl;
+	}
+
+	int percent = atoi(argv[5]);
+	if (percent == 0) {
+		cout << "TEST: Invalid parameter detected" << endl;
+		cout << "Cannot have threshold of 0 or invalid threshold" << endl;
+		assertTrue(0, percent);
+		cout << endl;
+	}
+
 	// get difference between 2 images
 	Mat diffimage = compareImages(image1, image2);
 
@@ -114,7 +153,7 @@ int main(int argc, char** argv)
 int validInput(int argc)
 {
 	// check arguments
-	if (argc != 4)
+	if (argc != 6)
 	{
 		cout << "TEST: Invalid Number of Arguments" << endl;
 		cout << "Usage: imagecompar <first image> <second image> <damage type>" << endl;
@@ -157,6 +196,23 @@ int damageType(char* damageParam)
 		return 1;
 	}
 	else if (strcmp(damageParam, "flood") == 0)
+	{
+		return 2;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+// Checks which tolerance parameter is indicated
+int checkTolParam(char* type)
+{
+	if (strcmp(type, "length") == 0)
+	{
+		return 1;
+	}
+	else if (strcmp(type, "width") == 0)
 	{
 		return 2;
 	}
