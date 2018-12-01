@@ -80,10 +80,10 @@ void getNewFiles(char **args) {
 	int i = 0;
 	int j = 2;
 
-	// doesn't really do much. if we could pass args by reference it would work
+	// Duplicates the string into args[j] from files[i]. Gives us the new arguments.
 	while (i < numFiles) {
 		//cout << "files[" << i << "]: " << files[i] << endl;
-		strcpy(args[j], files[i]);
+		args[j] = strdup(files[i]);
 		i++;
 		j++;
 	}
