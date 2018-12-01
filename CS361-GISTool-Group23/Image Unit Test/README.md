@@ -16,7 +16,7 @@ the program will notify the user.
 Tolerance type can be either length or width. If a non-existant type is entered,
 the program will notify the user.
 Tolerance percentage can currently be any integer. If a string or 0 is entered,
-the program will notify the user.
+the program will notify the user. Negatives not yet handled.
 
 #### Compilation
 ```
