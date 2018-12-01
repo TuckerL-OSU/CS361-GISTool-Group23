@@ -39,6 +39,7 @@ int main(int argc, char** argv)
 	int argumentCount = 5;
 
 	// Testing integrated modules of discoloration detection
+	cout << endl;
 	cout << "TEST 1 - All input valid, discoloration present, analysis completes" << endl;
 	assertTrue(0, discolorIntegrated(image1, image2, damageParam, discolorThreshold, argumentCount));
 	cout << endl;
@@ -74,6 +75,12 @@ int main(int argc, char** argv)
 	damageParam = damageParamText;
 	cout << endl;
 	
+	cout << "TEST 8 - Wrong damage parameter is used" << endl;
+	char damageParamText3[] = "buildings";
+	damageParam = damageParamText3;
+	assertTrue(-1, discolorIntegrated(image1, image2, damageParam, discolorThreshold, argumentCount));
+	damageParam = damageParamText;
+	cout << endl;
 
 return 0;
 }
@@ -113,6 +120,7 @@ int discolorIntegrated(Mat image1In, Mat image2In, char* damageParam, float disc
 			break;
 		case 0:
 			cout << "Damage type parameter was not recognized" << endl;
+			return -1;
 	}	
 
 	// read in the 2 images	
