@@ -49,6 +49,7 @@ int main(int argc, char** argv)
 			break;
 		case 0:
 			cout << "Damage type parameter was not recognized" << endl;
+			return -1;
 	}	
 
 	// read in the 2 images	
