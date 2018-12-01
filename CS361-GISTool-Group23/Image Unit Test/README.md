@@ -13,6 +13,10 @@ Image 1 and Image 3 should be the same dimensions, but contain different images.
 Image 1 and Image 4 should be different dimensions.  
 Damage type can be either road or flood. If a non-existant type is entered,
 the program will notify the user.
+Tolerance type can be either length or width. If a non-existant type is entered,
+the program will notify the user.
+Tolerance percentage can currently be any integer. If a string or 0 is entered,
+the program will notify the user.
 
 #### Compilation
 ```
@@ -22,11 +26,11 @@ the program will notify the user.
 #### Running the test suite 
 ```
 chmod +x testsuite
-testsuite <image1> <image2> <image3> <image4> <damage_type>
+testsuite <image1> <image2> <image3> <image4> <damage_type> <tolerance_type> <tolerance>
 ```
 
 #### Optional: Manual testing
 If you wish to run manual tests, you can run the program via:
 ```
-./test <image1> <image2> <damage_type>
+./test <image1> <image2> <damage_type> <tolerance_type> <tolerance>
 ```
