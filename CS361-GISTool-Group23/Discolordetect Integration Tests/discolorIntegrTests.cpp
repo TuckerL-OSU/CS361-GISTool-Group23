@@ -1,15 +1,11 @@
 /*
- * Discoloration Detector
+ * Integration Tests for Discoloration Detector
  * CS 361 Group 23
- * Description: This program computes combined RGB value "distance"
- * for each pixel of 2 images, uses it as percent of maximum.  If this
- * value is greater than the threshold value entered as command-line
- * parameter, the piexel is marked in red. Results are saved in a
- * new image that shows the 2nd image with discoloration marked on
- * it in red.
- * Input: 2 images of the same area
- * Output: 1 PNG difference image with discoloration marked
- * To run: discolordetect <first image> <second image> <damage type> <discolor threshold>
+ * Description: This program contains integration tests for integrated units of discolordetect program
+ * Input: 4 images - image 1 and image 3 are the same image, image 2 has discoloration,
+ * image 4 has different dimensions than image 1
+ * Output: Test results are printed to console
+ * To run: integrationTests <image1> <image2> <image3> <image4>
  */
 
 #include <opencv2/core/core.hpp>
@@ -71,6 +67,12 @@ int main(int argc, char** argv)
 	discolorThreshold = 50;
 	cout << endl;
 
+	cout << "TEST 7 - Damage parameter flood is used" << endl;
+	char damageParamText2[] = "flood";
+	damageParam = damageParamText2;
+	assertTrue(0, discolorIntegrated(image1, image2, damageParam, discolorThreshold, argumentCount));
+	damageParam = damageParamText;
+	cout << endl;
 	
 
 return 0;
